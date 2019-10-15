@@ -7,47 +7,29 @@ public class ExchangeModel {
     private String name;
     private BigDecimal amount;
 
-    public ExchangeModel(Builder b) {
-        this.id = b.id;
-        this.name = b.name;
-        this.amount = b.amount;
-    }
-
-    public static class Builder {
-        private int id;
-        private String name;
-        private BigDecimal amount;
-
-        public Builder id(int id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder amount(BigDecimal amount) {
-            this.amount = amount;
-            return this;
-        }
-
-        public ExchangeModel build() {
-            return new ExchangeModel(this);
-        }
-    }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public BigDecimal getAmount() {
         return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     @Override

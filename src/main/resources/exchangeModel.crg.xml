@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "hibernate.org/dtd/hibernate-configuration-3.0.dtd" >
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="models.ExchangeModel" table="exchanges">
+        <meta attribute="class-description">to jest przykladowa klasa modelu exchanges</meta>
+        // wskazujemy hibernate jaka będzie unikalna zmienna
+        <id name="id" type="java.lang.Integer" column="id"/>
+        <property name="name" type="java.lang.String" column="name"/>
+        <property name="amount" type="java.math.BigDecimal" column="amount"/>
+    </class>
+</hibernate-mapping>
