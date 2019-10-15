@@ -2,11 +2,20 @@ package models;
 
 import java.math.BigDecimal;
 
+// do poprawego działania Hibernate potrzebuje bezargumentowego konstuktora i gettery i settery
+
 public class ExchangeModel {
     private int id;
     private String name;
     private BigDecimal amount;
 
+    public ExchangeModel() { }
+
+    public ExchangeModel(int id, String name, BigDecimal amount) {
+        this.id = id;
+        this.name = name;
+        this.amount = amount;
+    }
 
     public int getId() {
         return id;

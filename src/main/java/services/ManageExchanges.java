@@ -18,7 +18,13 @@ public class ManageExchanges {
         List<ExchangeModel> results = session.createQuery("from ExchangeModel", ExchangeModel.class).list();
         transaction.commit();
         return results;
+    }
 
+    public void addExchange(ExchangeModel exchange){
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(exchange);
+        transaction.commit();
     }
 
 }
