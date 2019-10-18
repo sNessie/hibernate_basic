@@ -28,6 +28,7 @@ public class ManageExchanges {
         return result;
     }
 
+
     public void addExchange(ExchangeModel exchange) {
         Transaction transaction = null;
         try (Session session = factory.openSession();) {
@@ -39,8 +40,18 @@ public class ManageExchanges {
                 transaction.rollback();
             }
         }
-
-
     }
 
+    public void updateExchange (ExchangeModel exchangeModel){
+        Transaction transaction = null;
+        try (Session session = factory.openSession();) {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(exchangeModel);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+    }
 }
