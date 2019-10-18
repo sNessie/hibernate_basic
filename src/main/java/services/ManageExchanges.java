@@ -20,11 +20,20 @@ public class ManageExchanges {
         return results;
     }
 
+    public ExchangeModel getExchangeById(int id){
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        ExchangeModel result = session.byId(ExchangeModel.class).getReference(id);
+        transaction.commit();
+        return result;
+    }
+
     public void addExchange(ExchangeModel exchange){
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(exchange);
         transaction.commit();
+
     }
 
 }
