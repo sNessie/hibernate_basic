@@ -12,7 +12,7 @@ public class ManageExchanges {
 
     private SessionFactory factory = new Configuration().configure().buildSessionFactory();
 
-    public List<ExchangeModel> getExchanges(){
+    public List<ExchangeModel> getExchanges() {
         Session session = factory.openSession(); // open session with db
         Transaction transaction = session.beginTransaction();
         List<ExchangeModel> results = session.createQuery("from ExchangeModel", ExchangeModel.class).list();
@@ -20,7 +20,7 @@ public class ManageExchanges {
         return results;
     }
 
-    public ExchangeModel getExchangeById(int id){
+    public ExchangeModel getExchangeById(int id) {
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         ExchangeModel result = session.byId(ExchangeModel.class).getReference(id);
@@ -28,11 +28,18 @@ public class ManageExchanges {
         return result;
     }
 
-    public void addExchange(ExchangeModel exchange){
-        Session session = factory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(exchange);
-        transaction.commit();
+    public void addExchange(ExchangeModel exchange) {
+        Transaction transaction = null;
+        try (Session session = factory.openSession();) {
+            transaction = session.beginTransaction();
+            session.save(exchange);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+
 
     }
 
