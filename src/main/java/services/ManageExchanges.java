@@ -54,4 +54,17 @@ public class ManageExchanges {
             }
         }
     }
+
+    public void deleteExchange(int id){
+        Transaction transaction = null;
+        try (Session session = factory.openSession();) {
+            transaction = session.beginTransaction();
+            session.delete(session.get(ExchangeModel.class, id));
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+    }
 }
